@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Layer03_Website.Modules_Master.Main" %>
+<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="../Css/Main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../Css/smoothness/jquery-ui-1.8.16.custom.css"   />
+    <link rel="stylesheet" type="text/css" media="screen" href="../Scripts/Plugins/jquery.jqGrid-4.2.0/css/ui.jqgrid.css"  />
+    <title></title>
+    <script type="text/javascript">
+
+        function PageLoad_Start() {
+            var d = eo_GetObject('EODialog_Loader');
+            if (d.isLoaded) {
+                d.show(true);
+            }
+            else {
+                setTimeout(PageLoad_Start, 500);
+            }
+        }
+
+        function PageLoad_End() {
+            var d = eo_GetObject('EODialog_Loader');
+            d.close(1);
+        }
+
+    </script>
+</head>
+<body onload="PageLoad_End();">
+    <form id="form1" runat="server">
+        <eo:dialog ID="EODialog_Loader" runat="server" BackShadeColor="Black" 
+            BackShadeOpacity="10">
+            <ContentTemplate>
+                <table border="0" class="clsDetails">
+                    <tr>
+                        <td align="center">
+                            &nbsp;<asp:Image ID="Img_Loader" runat="server" ImageUrl="~/System/Images/Loader.gif" /></td>
+                    </tr>
+                    <tr>
+                        <td nowrap="nowrap">
+                            Please wait...</td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </eo:dialog>
+        <script type="text/javascript">
+            PageLoad_Start();
+        </script>
+        <div id="Header" align="center">
+            <div id="Header_Image">
+            </div>
+        </div>
+        <div id="Content" align="center">
+            <div id="Content_1" align="center" class="clsDetails">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    
+    </form>
+</body>
+<script type="text/javascript">
+    PageLoad_End();
+</script>
+</html>

@@ -1,0 +1,263 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.VisualBasic;
+using Layer01_Common;
+using Layer01_Common.Common;
+using Layer01_Common.DataAccess;
+
+namespace Layer01_Common.Objects
+{
+    [Serializable]
+    public class ClsQueryCondition
+    {
+        #region _Variables
+
+        [Serializable]
+        public struct Str_QueryCondition 
+        {
+            public string Name;
+            public string FieldName;
+            public string Operator;
+            public object Value;
+            public string DataType;
+            public Str_QueryCondition(string pName, string pFieldName, string pOperator, object pValue, string pDataType)
+            {
+                this.Name = pName;
+                this.FieldName = pFieldName;
+                this.Operator = pOperator;
+                this.Value = pValue;
+                this.DataType = pDataType;
+            }
+        }
+
+        Int64 mCt = 0;
+        List<Str_QueryCondition> mQc = new List<Str_QueryCondition>();
+
+        #endregion
+
+        #region _Methods
+
+        public void Add(string Name, string Operator, object Value, string DataType = "")
+        {
+            if (Operator.Trim() == "")
+            {
+                if (DataType == "") DataType = typeof(string).ToString();
+
+                if (DataType.ToUpper() == typeof(string).ToString().ToUpper() || DataType.ToUpper() == typeof(string).Name.ToUpper())
+                {
+                    Operator = "Like";
+                    Value = Value + @"%";
+                }
+                else Operator = "=";
+            }
+
+            if (DataType.ToUpper() == typeof(DateTime).ToString().ToUpper() || DataType.ToUpper() == typeof(DateTime).Name.ToUpper())
+            { if (!Information.IsDate(Value)) Value = DBNull.Value; }
+
+            bool IsFound = false;
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                if (Obj.Name == Name)
+                {
+                    IsFound = true;
+                    break;
+                }
+            }
+
+            string FieldName = Name;
+            if (IsFound)
+            {
+                this.mCt++;
+                Name = Name + this.mCt.ToString();
+            }
+
+            this.mQc.Add(new Str_QueryCondition(Name, FieldName, Operator, Value, DataType));
+        }
+
+        public void Add(string Name, string Condition, string DataType)
+        {
+            string Condition_Operator ="";
+            string Condition_Value = "";
+
+            if (DataType.ToLower() == typeof(string).Name.ToLower()) Condition_Value = Condition;
+            else
+            {
+                string[] Arr_ParsedText = Condition.Split(' ');
+
+                try
+                {
+                    switch (Arr_ParsedText[0].ToUpper())
+                    { 
+                        case ">":
+                        case "<":
+                        case "=":
+                        case "<=":
+                        case ">=":
+                        case "<>":
+                        case "LIKE":
+                            Condition_Operator = Arr_ParsedText[0];
+                            break;
+                    }
+                }
+                catch { }
+
+                if (Condition_Operator != "") Array.Clear(Arr_ParsedText, 0, 1);
+                Condition_Value = string.Join("", Arr_ParsedText);
+            }
+            this.Add(Name, Condition_Operator, Condition_Value, DataType);
+        }
+
+        public Int32 Count()
+        { return this.mQc.Count; }
+
+        public string GetQueryCondition()
+        {
+            string Query_Condition = " 1 = 1 ";
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                string Field;
+                string Condition;
+
+                if (Obj.DataType.ToUpper() == typeof(DateTime).ToString().ToUpper() || Obj.DataType.ToUpper() == typeof(DateTime).Name.ToUpper())
+                {
+                    Field = @"dbo.udf_ConvertDate([" + Obj.FieldName + @"])";
+                    Condition = @"dbo.udf_ConvertDate(@Condition_" + Obj.Name + @")";
+                }
+                else
+                {
+                    Field = @"[" + Obj.FieldName + @"]";
+                    Condition = @"@Condition_" + Obj.Name;
+                }
+
+                Query_Condition += " And " + Field + " " + Obj.Operator + " " + Condition;
+            }
+            return Query_Condition;
+        }
+
+        public SqlParameter[] GetParameters()
+        {
+            List<SqlParameter> List_Sp = new List<SqlParameter>();
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                string Name = Obj.Name;
+                string FieldName = Obj.FieldName;
+                object Value = Obj.Value;
+                string DataType = Obj.DataType.ToUpper();
+
+                SqlParameter Sp = new SqlParameter();
+                Sp.ParameterName = "Condition_" + Name;
+                Sp.Value = Value;
+
+                if (
+                    DataType == typeof(string).Name.ToUpper() 
+                    || DataType == typeof(string).ToString().ToUpper()
+                    )
+                {
+                    Sp.SqlDbType = SqlDbType.VarChar;
+                    Sp.Size = 8000;
+                }
+                else if (
+                    DataType == typeof(Int16).Name.ToUpper() 
+                    || DataType == typeof(Int16).ToString().ToUpper()
+                    )
+                { Sp.SqlDbType = SqlDbType.SmallInt; }
+                else if (
+                    DataType == typeof(Int32).Name.ToUpper() 
+                    || DataType == typeof(Int32).ToString().ToUpper()
+                    )
+                { Sp.SqlDbType = SqlDbType.Int; }
+                else if (
+                    DataType == typeof(Int64).Name.ToUpper() 
+                    || DataType == typeof(Int64).ToString().ToUpper()
+                    )
+                { Sp.SqlDbType = SqlDbType.BigInt; }
+                else if (
+                    DataType == typeof(decimal).Name.ToUpper() 
+                    || DataType == typeof(decimal).ToString().ToUpper() 
+                    || DataType == typeof(double).Name.ToUpper() 
+                    || DataType == typeof(double).ToString().ToUpper()
+                    )
+                { 
+                    Sp.SqlDbType = SqlDbType.Decimal;
+                    Sp.Precision = 18;
+                    Sp.Scale = 4;
+                }
+                else if (
+                    DataType == typeof(bool).Name.ToUpper() 
+                    || DataType == typeof(bool).ToString().ToUpper()
+                    )
+                { Sp.SqlDbType = SqlDbType.Bit; }
+                else if (
+                    DataType == typeof(DateTime).Name.ToUpper() 
+                    || DataType == typeof(DateTime).ToString().ToUpper()
+                    )
+                { Sp.SqlDbType = SqlDbType.DateTime; }
+
+                List_Sp.Add(Sp);
+            }
+
+            return List_Sp.ToArray();
+        }
+
+        #endregion
+
+        #region _Properties
+
+        public object pValue_Get(string Name)
+        {
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                if (Name == Obj.Name) return Obj.Value;
+            }
+            return DBNull.Value;
+        }
+
+        public void pValue_Set(string Name, object Value)
+        {
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                if (Name == Obj.Name)
+                {
+                    Str_QueryCondition Inner_Obj = Obj;
+                    Inner_Obj.Value = Value;
+                    return;
+                }
+            }
+        }
+
+        public Str_QueryCondition pObj_Get(string Name)
+        {
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                if (Name == Obj.Name) return Obj;
+            }
+            return new Str_QueryCondition();
+        }
+
+        public void pObj_Set(string Name, Str_QueryCondition Value)
+        {
+            foreach (Str_QueryCondition Obj in this.mQc)
+            {
+                if (Name == Obj.Name)
+                {
+                    Str_QueryCondition Inner_Obj = Obj;
+                    Inner_Obj = Value;
+                    return;
+                }
+                
+            }
+        }
+        
+        public List<Str_QueryCondition> pList
+        {
+            get { return this.mQc; }
+        }
+
+        #endregion
+
+    }
+}

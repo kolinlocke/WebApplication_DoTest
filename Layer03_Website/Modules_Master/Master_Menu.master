@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Modules_Master/Main.Master" AutoEventWireup="true" CodeBehind="Master_Menu.master.cs" Inherits="Layer03_Website.Modules_Master.Master_Menu" %>
+<%@ MasterType TypeName="Layer03_Website.Modules_Master.Main" %>
+<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="Menu" align="left">
+        <table id="Table_Menu" style="width: 100%;" border="1">
+            <tr>
+                <td>
+                    <asp:TreeView ID="trvMenus" runat="server" Font-Names="Tahoma" Font-Size="10pt" Font-Underline="False" ForeColor="black">
+                        <HoverNodeStyle Font-Bold="True" Font-Underline="False" />
+                    </asp:TreeView>
+                </td>
+            </tr>
+        </table>        
+    </div>
+    <div id="Menu_Content">
+        <div id="Login">
+            <table style="width: 100%;" border="1">
+                <tr>
+                    <td>
+                        <div>
+                            <table style="width: 98%;" cellspacing="0" border="0">
+                                <tr>
+                                    <td align="left">
+                                        <strong>Welcome</strong> <asp:Label ID="Lbl_Name" runat="server"></asp:Label>
+                                    </td>
+                                    <td align="right">
+                                        <asp:LinkButton ID="Btn_Logout" runat="server">Logout</asp:LinkButton>
+                                    </td>
+                                </tr>                
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="Module" align="center">
+            <table style="width: 100%;" border="1">
+                <tr>
+                    <td>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>            
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</asp:Content>

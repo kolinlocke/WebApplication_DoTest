@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78E6AFA7-59DA-470F-B206-E1B458B1A369}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Layer02_Objects</RootNamespace>
+    <AssemblyName>Layer02_Objects</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataObjects_Framework">
+      <HintPath>..\Dlls\DataObjects_Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modules_Base\Abstract\ClsBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Modules_Base\Abstract\ClsBase_List.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsEntity.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsEntity_Person.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsModule.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsModule_Address.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsModule_Transaction.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsModule_Transaction_Item.cs" />
+    <Compile Include="Modules_Base\Objects\ClsAddress.cs" />
+    <Compile Include="Modules_Base\Objects\ClsContactPerson.cs" />
+    <Compile Include="Modules_Base\Objects\ClsDocument.cs" />
+    <Compile Include="Modules_Base\Objects\ClsDocumentItem.cs" />
+    <Compile Include="Modules_Base\Objects\ClsParty.cs" />
+    <Compile Include="Modules_Base\Objects\ClsPerson.cs" />
+    <Compile Include="Modules_Base\Objects\ClsRowProperty.cs" />
+    <Compile Include="Modules_Masterfiles\ClsCustomer.cs" />
+    <Compile Include="Modules_Masterfiles\ClsCustomer_ShippingAddress.cs" />
+    <Compile Include="Modules_Masterfiles\ClsEmployee.cs" />
+    <Compile Include="Modules_Masterfiles\ClsItem.cs" />
+    <Compile Include="Modules_Security\ClsRights.cs" />
+    <Compile Include="Modules_Security\ClsUser.cs" />
+    <Compile Include="Modules_Transaction\ClsSalesOrder.cs" />
+    <Compile Include="Modules_Base\Abstract\ClsValidation.cs" />
+    <Compile Include="Modules_Masterfiles\ClsItemValidation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\ClsSysCurrentUser.cs" />
+    <Compile Include="System\Layer02_Common.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Layer01_Common\Layer01_Common.csproj">
+      <Project>{EACB7FD7-7268-41B7-BC01-1BB420E59375}</Project>
+      <Name>Layer01_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules_Validation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

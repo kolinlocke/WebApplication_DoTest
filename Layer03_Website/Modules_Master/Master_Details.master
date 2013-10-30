@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Modules_Master/Master_Menu.master" AutoEventWireup="false" CodeBehind="Master_Details.master.cs" Inherits="Layer03_Website.Modules_Master.Master_Details" %>
+<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript" src="../Scripts/Js_Common.js"></script>
+    <script type="text/javascript" src="../Scripts/Js_ModuleRequired.js" ></script>
+    <script type="text/javascript">
+        function EOCb_BE_Save(callback) {
+            EOCb_BE();
+            eo_TriggerServerEvent("EOSe", "Save", "");
+        }
+
+        function Raise_EOCb_Save() {
+            eo_Callback('<%=this.EOCb_Save.ClientID%>');
+        }
+
+    </script>
+    <eo:Callback ID="EOCb_Save" runat="server"
+        ClientSideBeforeExecute="EOCb_BE" 
+        ClientSideAfterExecute="EOCb_AE_Eval">
+    </eo:Callback>
+    <eo:ScriptEvent ID="EOSe" runat="server">
+    </eo:ScriptEvent>
+    <div style="
+            padding-left:10px;
+            padding-right:10px;"
+        align="left">
+        <div>
+            <asp:Label ID="Lbl_ModuleName" runat="server" Text="" CssClass="clsModuleName"></asp:Label>
+        </div>
+        <div>
+            <eo:CallbackPanel ID="EOCbp_Event" runat="server" Width="100%" UpdateMode="Conditional">
+                <asp:Panel ID="Panel_Event" runat="server" Visible="False" Width="100%">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Image ID="Img_Event" runat="server" ImageUrl="~/Images/system/Blank.gif" /></td>
+                            <td class="clsDetails">
+                                <asp:Label ID="Lbl_Event" runat="server"></asp:Label></td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </eo:CallbackPanel>
+        </div>
+        <div>
+            <br />
+            <asp:Panel ID="Panel_Buttons" runat="server">
+                <table cellspacing="0" style="width:100%">
+                    <tr>
+                        <td>
+                            <asp:Button ID="Btn_Print" runat="server" CssClass="clsButton" Text="Print" Width="60px" />
+                            <asp:Button ID="Btn_Save" runat="server" CssClass="clsButton" Text="Save" Width="60px" />
+                        </td>
+                        <td align="right">
+                            <asp:Button ID="Btn_Back" runat="server" EnableViewState="False" 
+                                CssClass="clsButton" Text="Back" Width="60px" />
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder_Buttons_Top" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="clsDetails">
+            <br />
+            <asp:Panel ID="Panel_CphDetails" runat="server">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder_Details" runat="server">
+                </asp:ContentPlaceHolder>
+            </asp:Panel>                
+        </div>
+        <div>
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder_Buttons_Bottom" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <asp:Panel ID="Panel_Buttons2" runat="server">
+                <table cellspacing="0" style="width:100%">
+                    <tr>
+                        <td>
+                            <asp:Button ID="Btn_Print2" runat="server" CssClass="clsButton" Text="Print" 
+                                Width="60px" />
+                            <asp:Button ID="Btn_Save2" runat="server" CssClass="clsButton" Text="Save" 
+                                Width="60px" />
+                        </td>
+                        <td align="right">
+                            <asp:Button ID="Btn_Back2" runat="server" EnableViewState="False" 
+                                CssClass="clsButton" Text="Back" Width="60px" />
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>            
+        </div>
+    </div>
+</asp:Content>

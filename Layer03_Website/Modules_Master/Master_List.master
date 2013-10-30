@@ -1,0 +1,202 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Modules_Master/Master_Menu.master" AutoEventWireup="true" CodeBehind="Master_List.master.cs" Inherits="Layer03_Website.Modules_Master.Master_List" %>
+<%@ MasterType TypeName="Layer03_Website.Modules_Master.Master_Menu" %>
+<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript" src="../Scripts/Js_Common.js"></script>
+    <script type="text/javascript">
+
+        function KeyPressEnter_Search(e) {
+            var ReturnValue = noenter(e);
+            if (e == false) {
+                eo_Callback('EOCb_Search', '<%= this.Btn_NewSearch.ClientID %>');
+            }
+
+            return ReturnValue;
+        }
+
+        function EOGrid_ItemCommand(grid, itemIndex, colIndex, commandName) {
+            var Item = grid.getItem(itemIndex);
+            var Key = Item.getKey();
+            eo_TriggerServerEvent('<%= this.EOSe.ClientID %>', 'Open', Key)
+        }
+
+        function EOMenu_Main_Click(e, eventInfo) {
+            var MenuItem = eventInfo.getItem();
+            var MenuID = MenuItem.getItemId();
+
+            switch (MenuID) {
+                case "New":
+                    eo_TriggerServerEvent('EOSe', 'New', '');
+                    break;
+                case "Print":
+                    eo_TriggerServerEvent('EOSe', 'Print', '');
+                    break;
+            }
+        }
+
+    </script>
+    <eo:Callback ID="EOCb_Search" runat="server"
+        ClientSideAfterExecute="EOCb_AE" 
+        ClientSideBeforeExecute="EOCb_BE">
+    </eo:Callback>
+    <eo:Callback ID="EOCb_Open" runat="server"            
+        ClientSideAfterExecute="EOCb_AE" 
+        ClientSideBeforeExecute="EOCb_BE"
+        Triggers="">
+    </eo:Callback>
+    <eo:Callback ID="EOCb_Print" runat="server"
+        ClientSideAfterExecute="EOCb_AE_OpenWindow" 
+        ClientSideBeforeExecute="EOCb_BE"
+        Triggers="">
+    </eo:Callback>
+    <eo:ScriptEvent ID="EOSe" runat="server">
+    </eo:ScriptEvent>
+    <div style="
+        padding-left:10px;
+        padding-right:10px;"
+        align="left">
+        <div>
+            <asp:Label ID="Lbl_ModuleName" runat="server" Text="" CssClass="clsModuleName"></asp:Label>
+        </div>
+        <div>
+            <br />
+            <table cellspacing="0">
+                <tr>
+                    <td>
+                        <asp:Button ID="Btn_New" runat="server" CssClass="clsButton" Text="New" Width="80px" />
+                        <asp:Button ID="Btn_Print" runat="server" CssClass="clsButton" Text="Print" Width="80px" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder_Top" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <asp:Panel ID="Panel_List" runat="server">
+            </asp:Panel>
+                <div>
+                    <table>
+                        <tr>
+                            <td valign="middle" style="width:60px">
+                                Search:&nbsp;
+                            </td>
+                            <td valign="middle">
+                                <asp:TextBox ID="Txt_Search" runat="server" CssClass="clsTextbox" Width="200px"></asp:TextBox>
+                                <asp:DropDownList ID="Cbo_SearchFilter" runat="server" Width="150px"></asp:DropDownList>
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td valign="middle">
+                                Top:&nbsp;
+                            </td>
+                            <td>
+                                <asp:TextBox ID="Txt_Top" runat="server" Width="120px"></asp:TextBox>
+                            </td>                    
+                        </tr>
+                        <tr>
+                            <td valign="middle">
+                                Page:&nbsp;
+                             </td>
+                            <td valign="middle">
+                                <table cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            <eo:CallbackPanel ID="EOCb_Page" runat="server" UpdateMode="Conditional">
+                                                <asp:DropDownList ID="Cbo_Page" runat="server" Width="120px">
+                                                </asp:DropDownList>
+                                            </eo:CallbackPanel>
+                                        </td>
+                                        <td>
+                                            &nbsp;
+                                            <asp:Button ID="Btn_Page" runat="server" Text="Go to Page" CssClass="clsButton" Width="110px" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:Button ID="Btn_NewSearch" runat="server" CssClass="clsButton" 
+                                    Text="New Search" Width="110px" EnableViewState="False" />
+                                <asp:Button ID="Btn_AddSearch" runat="server" CssClass="clsButton" 
+                                    Text="Add Search" Width="110px" EnableViewState="False" />
+                                <asp:Button ID="Btn_SortAsc" runat="server" CssClass="clsButton" 
+                                    Text="Sort Ascending" Width="110px" EnableViewState="False" />
+                                <asp:Button ID="Btn_SortDesc" runat="server" CssClass="clsButton" 
+                                    Text="Sort Descending" Width="120px" EnableViewState="False" />
+                                <asp:Button ID="Btn_Clear" runat="server" CssClass="clsButton" Text="Clear" 
+                                    Width="110px" EnableViewState="False" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <eo:CallbackPanel ID="EOCbp_Applied" runat="server" EnableViewState="False" UpdateMode="Conditional">
+                                    <asp:Label ID="Lbl_AppliedFilters" runat="server"></asp:Label>
+                                </eo:CallbackPanel>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <eo:CallbackPanel ID="EOCbp_Grid" runat="server" EnableViewState="False" 
+                    UpdateMode="Conditional" Width="100%">
+                    <eo:Grid ID="EOGrid_List" runat="server" BorderColor="#828790" 
+                        BorderWidth="1px" ColumnHeaderAscImage="00050204" 
+                        ColumnHeaderDescImage="00050205" ColumnHeaderDividerImage="00050203" 
+                        ColumnHeaderHeight="24" FixedColumnCount="1" Font-Bold="False" 
+                        Font-Italic="False" Font-Names="Tahoma" Font-Overline="False" 
+                        Font-Size="8.75pt" Font-Strikeout="False" Font-Underline="False" 
+                        GridLineColor="240, 240, 240" GridLines="Both" Height="400px" ItemHeight="19" 
+                        Width="100%" EnableViewState="False">
+                        <ItemStyles>
+                            <eo:GridItemStyleSet>
+                                <ItemStyle CssText="background-color: white" />
+                                <ItemHoverStyle CssText="background-image: url(00050206); background-repeat: repeat-x" />
+                                <SelectedStyle CssText="background-image: url(00050207); background-repeat: repeat-x" />
+                                <CellStyle CssText="padding-left:8px;padding-top:2px;white-space:nowrap;" />
+                            </eo:GridItemStyleSet>
+                        </ItemStyles>
+                        <ColumnHeaderStyle CssText="background-image:url('00050201');padding-left:8px;padding-top:4px;" />
+                        <ColumnHeaderHoverStyle CssText="background-image:url('00050202');padding-left:8px;padding-top:4px;" />
+                        <Columns>
+                            <eo:RowNumberColumn>
+                            </eo:RowNumberColumn>
+                        </Columns>
+                        <ColumnTemplates>
+                            <eo:TextBoxColumn>
+                                <TextBoxStyle CssText="BORDER-RIGHT: #7f9db9 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7f9db9 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 8.75pt; PADDING-BOTTOM: 1px; MARGIN: 0px; BORDER-LEFT: #7f9db9 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7f9db9 1px solid; FONT-FAMILY: Tahoma" />
+                            </eo:TextBoxColumn>
+                            <eo:DateTimeColumn>
+                                <DatePicker ControlSkinID="None" DayCellHeight="16" DayCellWidth="19" 
+                                    DayHeaderFormat="FirstLetter" DisabledDates="" OtherMonthDayVisible="True" 
+                                    SelectedDates="" TitleLeftArrowImageUrl="DefaultSubMenuIconRTL" 
+                                    TitleRightArrowImageUrl="DefaultSubMenuIcon">
+                                    <PickerStyle CssText="border-bottom-color:#7f9db9;border-bottom-style:solid;border-bottom-width:1px;border-left-color:#7f9db9;border-left-style:solid;border-left-width:1px;border-right-color:#7f9db9;border-right-style:solid;border-right-width:1px;border-top-color:#7f9db9;border-top-style:solid;border-top-width:1px;font-family:Courier New;font-size:8pt;margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;padding-bottom:1px;padding-left:2px;padding-right:2px;padding-top:2px;" />
+                                    <CalendarStyle CssText="background-color: white; border-right: #7f9db9 1px solid; padding-right: 4px; border-top: #7f9db9 1px solid; padding-left: 4px; font-size: 9px; padding-bottom: 4px; border-left: #7f9db9 1px solid; padding-top: 4px; border-bottom: #7f9db9 1px solid; font-family: tahoma" />
+                                    <TitleStyle CssText="background-color:#9ebef5;font-family:Tahoma;font-size:12px;padding-bottom:2px;padding-left:6px;padding-right:6px;padding-top:2px;" />
+                                    <TitleArrowStyle CssText="cursor:hand" />
+                                    <MonthStyle CssText="font-family: tahoma; font-size: 12px; margin-left: 14px; cursor: hand; margin-right: 14px" />
+                                    <DayHeaderStyle CssText="font-family: tahoma; font-size: 12px; border-bottom: #aca899 1px solid" />
+                                    <DayStyle CssText="font-family: tahoma; font-size: 12px; border-right: white 1px solid; border-top: white 1px solid; border-left: white 1px solid; border-bottom: white 1px solid" />
+                                    <DayHoverStyle CssText="font-family: tahoma; font-size: 12px; border-right: #fbe694 1px solid; border-top: #fbe694 1px solid; border-left: #fbe694 1px solid; border-bottom: #fbe694 1px solid" />
+                                    <TodayStyle CssText="font-family: tahoma; font-size: 12px; border-right: #bb5503 1px solid; border-top: #bb5503 1px solid; border-left: #bb5503 1px solid; border-bottom: #bb5503 1px solid" />
+                                    <SelectedDayStyle CssText="font-family: tahoma; font-size: 12px; background-color: #fbe694; border-right: white 1px solid; border-top: white 1px solid; border-left: white 1px solid; border-bottom: white 1px solid" />
+                                    <DisabledDayStyle CssText="font-family: tahoma; font-size: 12px; color: gray; border-right: white 1px solid; border-top: white 1px solid; border-left: white 1px solid; border-bottom: white 1px solid" />
+                                    <OtherMonthDayStyle CssText="font-family: tahoma; font-size: 12px; color: gray; border-right: white 1px solid; border-top: white 1px solid; border-left: white 1px solid; border-bottom: white 1px solid" />
+                                </DatePicker>
+                            </eo:DateTimeColumn>
+                            <eo:MaskedEditColumn>
+                                <MaskedEdit ControlSkinID="None" 
+                                    TextBoxStyle-CssText="BORDER-RIGHT: #7f9db9 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #7f9db9 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 1px; MARGIN: 0px; BORDER-LEFT: #7f9db9 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #7f9db9 1px solid; font-family:Courier New;font-size:8pt;">
+                                </MaskedEdit>
+                            </eo:MaskedEditColumn>
+                        </ColumnTemplates>
+                        <FooterStyle CssText="padding-bottom:4px;padding-left:4px;padding-right:4px;padding-top:4px;" />
+                    </eo:Grid>
+                </eo:CallbackPanel>
+        </div>
+    </div>
+</asp:Content>

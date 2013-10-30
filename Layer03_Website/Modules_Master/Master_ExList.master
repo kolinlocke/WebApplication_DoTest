@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Modules_Master/Master_Menu.master" AutoEventWireup="true" CodeBehind="Master_ExList.master.cs" Inherits="Layer03_Website.Modules_Master.Master_ExList" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript" src="../Scripts/Plugins/jquery.jqGrid-4.2.0/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="../Scripts/Plugins/jquery.jqGrid-4.2.0/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript">
+                
+        function Setup_Grid() {
+            jQuery("#List1").jqGrid({
+                mtype: "POST"
+                , url: "<%= this.Request.Url.AbsoluteUri %>"
+                , datatype: "json"
+                , postData:
+                    "IsAjax=1"
+                    + "&Cmd=List"
+                    <%--
+                    /* 
+                    "__EVENTARGUMENT="
+                    + "&__EVENTTARGET="
+                    + "&__EVENTVALIDATION=" + document.getElementById("__EVENTVALIDATION").value
+                    + "&__VIEWSTATE=" + document.getElementById("__VIEWSTATE").value
+                    + "&IsAjax=1"
+                    + "&Cmd=List"
+                    */
+                    --%>
+                , colNames: Grid_ColNames
+                , colModel: Grid_ColModel
+                , rowNum: 10
+                , viewrecords: true
+                , sortorder: "desc"
+                , sortable: true
+                , caption: "JSON Example"
+                , onSortCol: function (index, iCol, sortorder) {
+                }
+                , loadonce: true
+                , gridComplete: function () {
+                    jQuery('#List1').setGridParam({ datatype: 'local' });
+                }
+            });
+        }
+    </script>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder_Top" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div style="width: 100%">
+        <table id="List1" style="width: 100%; height: 500px"></table>
+    </div>
+    <script type="text/javascript">
+        Setup_Grid();
+    </script>
+</asp:Content>

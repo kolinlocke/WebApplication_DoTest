@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77B23B96-C046-4E7F-9888-5DB5BE620715}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Layer03_Website</RootNamespace>
+    <AssemblyName>Layer03_Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DeployIisAppPath>Default Web Site/WebApplication1</DeployIisAppPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataObjects_Framework">
+      <HintPath>..\Dlls\DataObjects_Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Web, Version=9.0.28.2, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Essential Objects\EO.Web Controls 2011\EO.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\Main.css" />
+    <Content Include="Css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Css\smoothness\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Modules_Page\Default.aspx" />
+    <Content Include="Modules_Page\Page_Customer.aspx" />
+    <Content Include="Modules_Page\Page_Customer_Details.aspx" />
+    <Content Include="Modules_Page\Page_Employee.aspx" />
+    <Content Include="Modules_Page\Page_Employee_Details.aspx" />
+    <Content Include="Modules_Page\Page_Item.aspx" />
+    <Content Include="Modules_Page\Page_Item_Details.aspx" />
+    <Content Include="Modules_Page\Page_Login.aspx" />
+    <Content Include="Modules_Page\Page_Rights.aspx" />
+    <Content Include="Modules_Page\Page_Rights_Details.aspx" />
+    <Content Include="Modules_Page\Page_User.aspx" />
+    <Content Include="Modules_Page\Page_User_Details.aspx" />
+    <Content Include="Modules_UserControl\Control_Address.ascx" />
+    <Content Include="Modules_UserControl\Control_Customer_Details_ShippingAddress.ascx" />
+    <Content Include="Modules_UserControl\Control_Details_ContactPerson.ascx" />
+    <Content Include="Modules_UserControl\Control_FileBrowser.ascx" />
+    <Content Include="Modules_UserControl\Control_Grid.ascx" />
+    <Content Include="Modules_UserControl\Control_Person.ascx" />
+    <Content Include="Modules_UserControl\Control_Selection.ascx" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\Js_Common.js" />
+    <Content Include="Scripts\Js_ModuleRequired.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\css\ui.jqgrid.css" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\Changes.txt" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\install.txt" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\jquery-1.5.2.min.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\js\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\grid.addons.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\grid.postext.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\grid.setcolumns.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\jquery.contextmenu.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\jquery.searchFilter.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\jquery.tablednd.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\ui.multiselect.css" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\plugins\ui.multiselect.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\css\ui.jqgrid.css" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\css\ui.multiselect.css" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.base.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.celledit.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.common.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.custom.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.filter.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.formedit.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.grouping.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.import.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.inlinedit.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.jqueryui.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.loader.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.subgrid.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.tbltogrid.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\grid.treegrid.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\jqDnR.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\jqModal.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\jquery.fmatter.js" />
+    <Content Include="Scripts\Plugins\jquery.jqGrid-4.2.0\src\JsonXml.js" />
+    <Content Include="System\FileExplorer.aspx" />
+    <Content Include="System\Images\Bg_001.jpg" />
+    <Content Include="System\Images\Blank.gif" />
+    <Content Include="System\Images\calnedar.gif" />
+    <Content Include="System\Images\cp_error01.gif" />
+    <Content Include="System\Images\cp_Msgbox_Info.gif" />
+    <Content Include="System\Images\cp_Msgbox_Question.gif" />
+    <Content Include="System\Images\delete.gif" />
+    <Content Include="System\Images\Header.jpg" />
+    <Content Include="System\Images\Loader.gif" />
+    <Content Include="System\Images\minus.gif" />
+    <Content Include="System\Images\plus.gif" />
+    <Content Include="System\Images\QuestionMark001.jpg" />
+    <Content Include="System\Images\Unknown.png" />
+    <Content Include="System\Uploaded\Images\1_652400208l 2.jpg" />
+    <Content Include="System\Uploaded\Images\Bolt_001jpg 2.jpg" />
+    <Content Include="System\Uploaded\Images\cirno_laser_small_2 2.jpg" />
+    <Content Include="System\Uploaded\Images\random_number 2.png" />
+    <Content Include="System\Uploaded\Images\supercoder_2000_binary_keyboard 2.jpg" />
+    <Content Include="System\Uploaded\ThumbImages\Thumb_1_652400208l 2.jpg" />
+    <Content Include="System\Uploaded\ThumbImages\Thumb_Bolt_001jpg 2.jpg" />
+    <Content Include="System\Uploaded\ThumbImages\Thumb_cirno_laser_small_2 2.jpg" />
+    <Content Include="System\Uploaded\ThumbImages\Thumb_random_number 2.png" />
+    <Content Include="System\Uploaded\ThumbImages\Thumb_supercoder_2000_binary_keyboard 2.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\ClsBaseMain.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBaseMasterDetails.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBaseMasterList.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBaseMasterMenu.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBasePageDetails.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBasePageExList.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\ClsBasePageList.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Master\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Master\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Master\Master_Details.master.cs">
+      <DependentUpon>Master_Details.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Master\Master_Details.master.designer.cs">
+      <DependentUpon>Master_Details.master</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Master\Master_ExList.master.cs">
+      <DependentUpon>Master_ExList.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Master\Master_ExList.master.designer.cs">
+      <DependentUpon>Master_ExList.master</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Master\Master_List.master.cs">
+      <DependentUpon>Master_List.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Master\Master_List.master.designer.cs">
+      <DependentUpon>Master_List.master</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Master\Master_Menu.master.cs">
+      <DependentUpon>Master_Menu.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Master\Master_Menu.master.designer.cs">
+      <DependentUpon>Master_Menu.master</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Customer.aspx.cs">
+      <DependentUpon>Page_Customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Customer.aspx.designer.cs">
+      <DependentUpon>Page_Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Customer_Details.aspx.cs">
+      <DependentUpon>Page_Customer_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Customer_Details.aspx.designer.cs">
+      <DependentUpon>Page_Customer_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Employee.aspx.cs">
+      <DependentUpon>Page_Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Employee.aspx.designer.cs">
+      <DependentUpon>Page_Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Employee_Details.aspx.cs">
+      <DependentUpon>Page_Employee_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Employee_Details.aspx.designer.cs">
+      <DependentUpon>Page_Employee_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Item.aspx.cs">
+      <DependentUpon>Page_Item.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Item.aspx.designer.cs">
+      <DependentUpon>Page_Item.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Item_Details.aspx.cs">
+      <DependentUpon>Page_Item_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Item_Details.aspx.designer.cs">
+      <DependentUpon>Page_Item_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Login.aspx.cs">
+      <DependentUpon>Page_Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Login.aspx.designer.cs">
+      <DependentUpon>Page_Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Rights.aspx.cs">
+      <DependentUpon>Page_Rights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Rights.aspx.designer.cs">
+      <DependentUpon>Page_Rights.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Rights_Details.aspx.cs">
+      <DependentUpon>Page_Rights_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_Rights_Details.aspx.designer.cs">
+      <DependentUpon>Page_Rights_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_User.aspx.cs">
+      <DependentUpon>Page_User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_User.aspx.designer.cs">
+      <DependentUpon>Page_User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_Page\Page_User_Details.aspx.cs">
+      <DependentUpon>Page_User_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_Page\Page_User_Details.aspx.designer.cs">
+      <DependentUpon>Page_User_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Address.ascx.cs">
+      <DependentUpon>Control_Address.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Address.ascx.designer.cs">
+      <DependentUpon>Control_Address.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Customer_Details_ShippingAddress.ascx.cs">
+      <DependentUpon>Control_Customer_Details_ShippingAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Customer_Details_ShippingAddress.ascx.designer.cs">
+      <DependentUpon>Control_Customer_Details_ShippingAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Details_ContactPerson.ascx.cs">
+      <DependentUpon>Control_Details_ContactPerson.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Details_ContactPerson.ascx.designer.cs">
+      <DependentUpon>Control_Details_ContactPerson.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_FileBrowser.ascx.cs">
+      <DependentUpon>Control_FileBrowser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_FileBrowser.ascx.designer.cs">
+      <DependentUpon>Control_FileBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Grid.ascx.cs">
+      <DependentUpon>Control_Grid.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Grid.ascx.designer.cs">
+      <DependentUpon>Control_Grid.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Person.ascx.cs">
+      <DependentUpon>Control_Person.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Person.ascx.designer.cs">
+      <DependentUpon>Control_Person.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Selection.ascx.cs">
+      <DependentUpon>Control_Selection.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules_UserControl\Control_Selection.ascx.designer.cs">
+      <DependentUpon>Control_Selection.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\FileExplorer.aspx.cs">
+      <DependentUpon>FileExplorer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="System\FileExplorer.aspx.designer.cs">
+      <DependentUpon>FileExplorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Log\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules_Master\Main.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules_Master\Master_Menu.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Layer01_Common\Layer01_Common.csproj">
+      <Project>{EACB7FD7-7268-41B7-BC01-1BB420E59375}</Project>
+      <Name>Layer01_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Layer01_Common_Web\Layer01_Common_Web.csproj">
+      <Project>{F57898DF-DBD8-4134-BC6B-B15D25855471}</Project>
+      <Name>Layer01_Common_Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Layer01_Common_Web_EO\Layer01_Common_Web_EO.csproj">
+      <Project>{E63E9FF8-30E9-46BE-8C84-FD06D1504B24}</Project>
+      <Name>Layer01_Common_Web_EO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Layer02_Objects\Layer02_Objects.csproj">
+      <Project>{78E6AFA7-59DA-470F-B206-E1B458B1A369}</Project>
+      <Name>Layer02_Objects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules_Master\Master_List.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules_Master\Master_Details.master" />
+    <Content Include="Modules_Master\Master_ExList.master" />
+    <None Include="Scripts\vssver.scc" />
+    <None Include="System\Images\vssver.scc" />
+    <None Include="System\Uploaded\Images\vssver.scc" />
+    <None Include="System\Uploaded\Pdf\scan0001 2 2.pdf" />
+    <None Include="System\Uploaded\Pdf\vssver.scc" />
+    <None Include="System\Uploaded\ThumbImages\vssver.scc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6019</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/WebApplication_DoTest</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/WebApplication_DoTest</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
